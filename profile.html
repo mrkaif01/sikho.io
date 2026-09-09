@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+
+<style>
+body{
+background:#121212;
+color:white;
+font-family:Arial;
+padding:20px;
+text-align:center;
+}
+
+.card{
+background:#1e1e1e;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+a{
+color:#00d4ff;
+text-decoration:none;
+}
+</style>
+
+</head>
+<body>
+
+<h1>My Profile</h1>
+
+<div class="card">
+<h2 id="user">Loading...</h2>
+<p>Courses Completed: 0</p>
+<p>Learning Streak: 0 Days</p>
+</div>
+
+<br>
+
+<a href="index.html">← Back to Home</a>
+
+<script>
+let user = localStorage.getItem("username");
+
+if(user){
+document.getElementById("user").innerText = user;
+}else{
+document.getElementById("user").innerText = "Guest User";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Sikho.io</title>
+
+<style>
+body{
+background:#121212;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:30px;
+}
+
+input{
+width:90%;
+max-width:300px;
+padding:12px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+.card{
+background:#1e1e1e;
+padding:20px;
+border-radius:15px;
+max-width:350px;
+margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1>Login</h1>
+
+<input type="text" id="name" placeholder="Enter Your Name">
+
+<br>
+
+<button onclick="login()">Login</button>
+</div>
+
+<script>
+function login(){
+let name = document.getElementById("name").value;
+
+localStorage.setItem("username", name);
+
+window.location.href="profile.html";
+}
+</script>
+
+</body>
+</html>

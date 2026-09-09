@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sikho.io</title>
+
+<style>
+body{
+background:#121212;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
+padding:20px;
+}
+
+h1{
+color:#00d4ff;
+}
+
+.search{
+width:90%;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+.stats{
+background:#1e1e1e;
+padding:15px;
+margin:15px;
+border-radius:15px;
+}
+
+.stats h2{
+margin:0;
+color:#00d4ff;
+font-size:35px;
+}
+
+.card{
+background:#1e1e1e;
+margin:15px;
+padding:20px;
+border-radius:15px;
+font-size:20px;
+}
+
+.nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#1e1e1e;
+padding:15px;
+text-align:center;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+font-size:18px;
+margin:0 15px;
+font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Sikho.io</h1>
+<p>Learn Anything, Anytime</p>
+
+<div class="stats">
+<h2>4</h2>
+<p>Total Courses</p>
+</div>
+
+<input class="search" placeholder="Search Courses">
+
+<a href="technology.html" style="text-decoration:none;color:white;">
+<div class="card">Technology</div>
+</a>
+
+<a href="english.html" style="text-decoration:none;color:white;">
+<div class="card">English</div>
+</a>
+
+<div class="card">Psychology</div>
+<div class="card">AI Tools</div>
+
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="#">Search</a>
+<a href="profile.html">Profile</a>
+</div>
+
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="#">Search</a>
+<a href="login.html">Login</a>
+<a href="profile.html">Profile</a>
+</div>
+
+<script>
+let search = document.querySelector(".search");
+
+search.addEventListener("keyup", function() {
+let filter = search.value.toLowerCase();
+let cards = document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+let text = card.innerText.toLowerCase();
+
+if(text.includes(filter)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+});
+});
+</script>
+
+</body>
+</html>
