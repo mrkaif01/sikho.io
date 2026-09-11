@@ -1,52 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Profile</title>
+<title>Profile - Sikho.io</title>
 
 <style>
 body{
-background:#121212;
-color:white;
-font-family:Arial;
-padding:20px;
+background:#f5f7fa;
+font-family:Arial,sans-serif;
 text-align:center;
+padding:20px;
+margin:0;
 }
 
 .card{
-background:#1e1e1e;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
+background:white;
+max-width:350px;
+margin:auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
-a{
-color:#00d4ff;
+.avatar{
+width:100px;
+height:100px;
+border-radius:50%;
+background:#00aaff;
+color:white;
+font-size:40px;
+line-height:100px;
+margin:auto;
+font-weight:bold;
+}
+
+h2{
+margin-top:15px;
+}
+
+.info{
+background:#f0f4f8;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+}
+
+.btn{
+display:block;
+background:#00aaff;
+color:white;
 text-decoration:none;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.logout{
+background:#ff4444;
+border:none;
+color:white;
+padding:12px;
+margin-top:15px;
+width:100%;
+border-radius:10px;
+font-size:16px;
 }
 </style>
-
 </head>
+
 <body>
 
-<h1>My Profile</h1>
-
 <div class="card">
+
+<div class="avatar" id="avatar">K</div>
+
 <h2 id="user">Loading...</h2>
+
+<div class="info">
 <p>Courses Completed: 0</p>
 <p>Learning Streak: 0 Days</p>
 </div>
 
-<br>
+<a href="index.html" class="btn">🏠 Home</a>
 
-<a href="index.html">← Back to Home</a>
+<button class="logout" onclick="logout()">
+🚪 Logout
+</button>
+
+</div>
 
 <script>
 let user = localStorage.getItem("username");
 
 if(user){
-document.getElementById("user").innerText = user;
+document.getElementById("user").innerText =
+"Welcome, " + user;
+
+document.getElementById("avatar").innerText =
+user.charAt(0).toUpperCase();
 }else{
-document.getElementById("user").innerText = "Guest User";
+window.location.href = "login.html";
+}
+
+function logout(){
+localStorage.removeItem("username");
+window.location.href = "login.html";
 }
 </script>
 
