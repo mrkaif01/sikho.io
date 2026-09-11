@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Sikho.io</title>
+<title>Sikho.io - Learn Anything, Anytime</title>
 
 <style>
 *{
@@ -14,7 +14,7 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#0f172a;
+background:#f4f7fb;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -29,11 +29,11 @@ max-width:350px;
 padding:30px;
 border-radius:20px;
 text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 .logo{
-font-size:28px;
+font-size:30px;
 font-weight:bold;
 color:#2563eb;
 margin-bottom:10px;
@@ -62,12 +62,8 @@ background:#2563eb;
 color:white;
 font-size:16px;
 font-weight:bold;
-cursor:pointer;
 }
 
-button:hover{
-background:#1d4ed8;
-}
 </style>
 </head>
 
@@ -77,26 +73,18 @@ background:#1d4ed8;
 
 <div class="logo">Sikho.io</div>
 
-<p class="text">
-Learn Anything, Anytime
-</p>
+<p class="text">Learn Anything, Anytime</p>
 
-<input
-type="text"
-id="name"
-placeholder="Enter Your Name">
+<input type="text" id="name" placeholder="Enter Your Name">
 
-<button onclick="login()">
-Login
-</button>
+<button onclick="login()">Login</button>
 
 </div>
 
 <script>
 function login(){
 
-let name =
-document.getElementById("name").value;
+let name=document.getElementById("name").value;
 
 if(name==""){
 alert("Please enter your name");
