@@ -1,0 +1,34 @@
+<h2>Edit Profile</h2>
+
+<input type="file" id="photo">
+
+<input type="text" id="name" placeholder="Your Name">
+
+<button onclick="saveProfile()">Save Changes</button>
+
+<a href="profile.html">⬅ Back</a>
+
+<script>
+let savedName = localStorage.getItem("username");
+if(savedName){
+ document.getElementById("name").value = savedName;
+}
+
+function saveProfile(){
+ let name = document.getElementById("name").value;
+ localStorage.setItem("username", name);
+
+ let file = document.getElementById("photo").files[0];
+
+ if(file){
+   let reader = new FileReader();
+   reader.onload = function(e){
+     localStorage.setItem("profilePhoto", e.target.result);
+     window.location.href="profile.html";
+   };
+   reader.readAsDataURL(file);
+ }else{
+   window.location.href="profile.html";
+ }
+}
+</script>

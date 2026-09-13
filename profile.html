@@ -1,142 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profile - Sikho.io</title>
 
 <style>
 body{
-background:#f5f7fa;
-font-family:Arial,sans-serif;
-text-align:center;
-padding:20px;
 margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
 }
 
-.card{
-background:white;
-max-width:350px;
-margin:auto;
-padding:25px;
-border-radius:20px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.avatar{
-width:100px;
-height:100px;
-border-radius:50%;
-background:#00aaff;
-color:white;
-font-size:40px;
-line-height:100px;
-margin:auto;
+.header{
+padding:20px;
+font-size:24px;
 font-weight:bold;
-}
-
-h2{
-margin-top:15px;
-}
-
-.info{
-background:#f0f4f8;
-padding:12px;
-margin-top:10px;
-border-radius:10px;
-}
-
-.btn{
-display:block;
-background:#00aaff;
-color:white;
-text-decoration:none;
-padding:12px;
-margin-top:10px;
-border-radius:10px;
-font-weight:bold;
-}
-
-.logout{
-background:#ff4444;
-border:none;
-color:white;
-padding:12px;
-margin-top:15px;
-width:100%;
-border-radius:10px;
-font-size:16px;
-}
-
-.profile-container{
-  padding:20px;
 }
 
 .profile-card{
-  background:white;
-  padding:20px;
-  border-radius:15px;
-  text-align:center;
-  margin-bottom:20px;
+text-align:center;
+padding:20px;
+}
+
+.profile-img{
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #fff;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.name{
+font-size:22px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.edit-btn{
+display:inline-block;
+margin-top:15px;
+background:#ff8c42;
+color:white;
+padding:12px 25px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
 }
 
 .menu{
-  display:block;
-  background:white;
-  color:black;
-  text-decoration:none;
-  padding:15px;
-  margin:10px 0;
-  border-radius:12px;
-  font-weight:bold;
+margin:20px;
 }
 
+.item{
+background:white;
+padding:18px;
+margin-bottom:12px;
+border-radius:15px;
+text-decoration:none;
+color:black;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:bold;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -2px 10px rgba(0,0,0,.1);
+}
+
+.bottom-nav a{
+text-decoration:none;
+color:#2196f3;
+font-weight:bold;
+text-align:center;
+}
 </style>
 </head>
 
 <body>
 
-<div class="profile-container">
-
-<h1>👤 Profile</h1>
+<div class="header">👤 Profile</div>
 
 <div class="profile-card">
-<div class="avatar" id="avatar">K</div>
-<h2 id="user">Loading...</h2>
+
+<img id="profileImg"
+class="profile-img"
+src="https://via.placeholder.com/100">
+
+<div class="name" id="user">Kaif</div>
+
+<a href="edit-profile.html" class="edit-btn">
+✏️ Edit Profile
+</a>
+
 </div>
 
-<a href="change-photo.html" class="menu">📷 Change Photo</a>
+<div class="menu">
 
-<a href="edit-profile.html" class="menu">✏️ Edit Profile</a>
+<a href="language.html" class="item">
+<span>🌐 Language</span>
+<span>›</span>
+</a>
 
-<a href="language.html" class="menu">🌐 Language</a>
+<a href="notifications.html" class="item">
+<span>🔔 Notifications</span>
+<span>›</span>
+</a>
 
-<a href="notifications.html" class="menu">🔔 Notifications</a>
+<a href="darkmode.html" class="item">
+<span>🌙 Dark Mode</span>
+<span>›</span>
+</a>
 
-<a href="darkmode.html" class="menu">🌙 Dark Mode</a>
+<a href="about.html" class="item">
+<span>ℹ️ About Sikho.io</span>
+<span>›</span>
+</a>
 
-<a href="about.html" class="menu">ℹ️ About Sikho.io</a>
+<a href="logout.html" class="item">
+<span>🚪 Logout</span>
+<span>›</span>
+</a>
 
-<button class="logout" onclick="logout()">
-🚪 Logout
-</button>
+</div>
 
+<div class="bottom-nav">
+<a href="index.html">🏠<br>Home</a>
+<a href="courses.html">📚<br>Courses</a>
+<a href="profile.html">👤<br>Profile</a>
 </div>
 
 <script>
 let user = localStorage.getItem("username");
-
 if(user){
-document.getElementById("user").innerText =
-"Welcome, " + user;
-
-document.getElementById("avatar").innerText =
-user.charAt(0).toUpperCase();
-}else{
-window.location.href = "login.html";
+document.getElementById("user").innerText = user;
 }
 
-function logout(){
-localStorage.removeItem("username");
-window.location.href = "login.html";
+let photo = localStorage.getItem("profilePhoto");
+if(photo){
+document.getElementById("profileImg").src = photo;
 }
 </script>
 
