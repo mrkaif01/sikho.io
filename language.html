@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+padding:20px;
+}
+
+.back{
+font-size:30px;
+text-decoration:none;
+color:black;
+font-weight:bold;
+}
+
+h1{
+text-align:center;
+margin:20px 0;
+}
+
+.card{
+background:white;
+padding:18px;
+margin:12px 0;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+cursor:pointer;
+font-size:18px;
+}
+
+.active{
+border:2px solid #ff8c42;
+}
+
+.check{
+color:#ff8c42;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<a href="profile.html" class="back">←</a>
+
+<h1>🌐 Language</h1>
+
+<div class="card" onclick="setLanguage('English',this)">
+<span>🇺🇸 English</span>
+<span class="check"></span>
+</div>
+
+<div class="card" onclick="setLanguage('Hindi',this)">
+<span>🇮🇳 Hindi</span>
+<span class="check"></span>
+</div>
+
+<div class="card" onclick="setLanguage('Urdu',this)">
+<span>🇵🇰 Urdu</span>
+<span class="check"></span>
+</div>
+
+<div class="card" onclick="setLanguage('Bengali',this)">
+<span>🇧🇩 Bengali</span>
+<span class="check"></span>
+</div>
+
+<script>
+
+function setLanguage(lang,element){
+
+localStorage.setItem("language",lang);
+
+document.querySelectorAll(".card").forEach(card=>{
+card.classList.remove("active");
+card.querySelector(".check").innerText="";
+});
+
+element.classList.add("active");
+element.querySelector(".check").innerText="✓";
+
+}
+
+let savedLang=localStorage.getItem("language");
+
+document.querySelectorAll(".card").forEach(card=>{
+
+if(card.innerText.includes(savedLang)){
+card.classList.add("active");
+card.querySelector(".check").innerText="✓";
+}
+
+});
+
+</script>
+
+</body>
+</html>
