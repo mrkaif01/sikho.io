@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Programming - Sikho.io</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0f1115;
+    color:white;
+}
+
+.header{
+    padding:20px;
+    text-align:center;
+    background:#171a21;
+    border-bottom:1px solid #292d36;
+}
+
+.header h1{
+    font-size:25px;
+}
+
+.header p{
+    margin-top:7px;
+    color:#aaa;
+    font-size:14px;
+}
+
+.container{
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.video-card{
+    background:#181b22;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid #292d36;
+}
+
+.thumbnail{
+    width:100%;
+    height:140px;
+    background:#252a33;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+}
+
+.video-card h2{
+    font-size:17px;
+    padding:14px;
+    line-height:1.4;
+}
+
+.back{
+    display:inline-block;
+    margin:20px;
+    color:#00d4ff;
+    text-decoration:none;
+    font-size:16px;
+}
+
+.bottom{
+    margin-top:20px;
+    padding:18px;
+    display:flex;
+    justify-content:space-around;
+    background:#171a21;
+    border-top:1px solid #292d36;
+}
+
+.bottom a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>💻 Programming</h1>
+    <p>Learn Programming Step by Step</p>
+</div>
+
+<a href="index.html" class="back">❮ Back</a>
+
+<div class="container">
+
+    <div class="video-card">
+        <div class="thumbnail">🖥️</div>
+        <h2>HTML Basics for Beginners</h2>
+    </div>
+
+    <div class="video-card">
+        <div class="thumbnail">🎨</div>
+        <h2>CSS Basics for Beginners</h2>
+    </div>
+
+    <div class="video-card">
+        <div class="thumbnail">⚡</div>
+        <h2>JavaScript Basics</h2>
+    </div>
+
+    <div class="video-card">
+        <div class="thumbnail">🐍</div>
+        <h2>Python Basics for Beginners</h2>
+    </div>
+
+</div>
+
+<div class="bottom">
+    <a href="index.html">🏠 Home</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="profile.html">👤 Profile</a>
+</div>
+
+</body>
+</html>
