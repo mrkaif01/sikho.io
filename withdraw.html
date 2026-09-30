@@ -159,7 +159,20 @@
       </div>
 
       <br>
+       
+     <label for="withdrawCoins">Coins to Withdraw</label>
 
+<input
+  type="number"
+  id="withdrawCoins"
+  placeholder="Minimum 5000 Coins"
+  min="5000"
+  oninput="calculateAmount()"
+>
+
+<div class="info" style="margin-bottom: 15px;">
+  Withdrawal Amount: ₹<span id="withdrawAmount">0.00</span>
+</div>
       <label for="upi">UPI ID</label>
 
       <input
@@ -183,31 +196,45 @@
 
   </div>
 
-  <script>
-    let balance = Number(localStorage.getItem("balance")) || 0;
+<script>
+  let balance = Number(localStorage.getItem("balance")) || 0;
 
-    document.getElementById("coins").textContent = balance;
-    document.getElementById("rupees").textContent =
-      (balance / 100).toFixed(2);
+  document.getElementById("coins").textContent = balance;
+  document.getElementById("rupees").textContent =
+    (balance / 100).toFixed(2);
 
-    function requestWithdrawal() {
-      const upi = document.getElementById("upi").value.trim();
+  function calculateAmount() {
+    const coins =
+      Number(document.getElementById("withdrawCoins").value) || 0;
 
-      if (!upi) {
-        alert("Please enter your UPI ID.");
-        return;
-      }
+    document.getElementById("withdrawAmount").textContent =
+      (coins / 100).toFixed(2);
+  }
 
-      if (balance < 5000) {
-        alert("Minimum withdrawal is ₹50 (5,000 Coins).");
-        return;
-      }
+  function requestWithdrawal() {
+    const upi = document.getElementById("upi").value.trim();
+    const coins =
+      Number(document.getElementById("withdrawCoins").value) || 0;
 
-      alert("Withdrawal request submitted successfully!");
-
-      document.getElementById("upi").value = "";
+    if (!upi) {
+      alert("Please enter your UPI ID.");
+      return;
     }
-  </script>
+
+    if (coins < 5000) {
+      alert("Minimum withdrawal is ₹50 (5,000 Coins).");
+      return;
+    }
+
+    if (coins > balance) {
+      alert("You don't have enough Coins.");
+      return;
+    }
+
+    alert("Withdrawal request submitted successfully!");
+    document.getElementById("upi").value = "";
+  }
+</script>
 
 </body>
 </html>
