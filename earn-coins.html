@@ -246,49 +246,77 @@
     </div>
 
   </div>
+  
+<script>
+  let balance = Number(localStorage.getItem("sikho_balance")) || 0;
+  let todayCoins = Number(localStorage.getItem("sikho_todayCoins")) || 0;
+  let totalEarned = Number(localStorage.getItem("sikho_totalEarned")) || 0;
 
-  <script>
-    let balance = 0;
-    let todayCoins = 0;
-    let totalEarned = 0;
+  let historyData =
+    JSON.parse(localStorage.getItem("sikho_history")) || [];
 
-    function watchAd() {
+  function updateDisplay() {
+    document.getElementById("balance").textContent = balance;
+    document.getElementById("todayCoins").textContent = todayCoins;
+    document.getElementById("totalEarned").textContent = totalEarned;
 
-      const button = document.getElementById("watchBtn");
+    const history = document.getElementById("history");
+    history.innerHTML = "";
 
-      button.disabled = true;
-      button.textContent = "⏳ Watching Demo Ad...";
-
-      setTimeout(function() {
-
-        const reward = 10;
-
-        balance += reward;
-        todayCoins += reward;
-        totalEarned += reward;
-
-        document.getElementById("balance").textContent = balance;
-        document.getElementById("todayCoins").textContent = todayCoins;
-        document.getElementById("totalEarned").textContent = totalEarned;
-
-        const history = document.getElementById("history");
-
-        const item = document.createElement("li");
-
-        item.innerHTML =
-          "<span>🎬 Demo Ad Watched</span>" +
-          "<span>+🪙 " + reward + "</span>";
-
-        history.prepend(item);
-
-        button.disabled = false;
-        button.textContent = "▶ Watch Ad & Earn 10 Coins";
-
-        alert("Congratulations! You earned 10 coins.");
-
-      }, 3000);
+    if (historyData.length === 0) {
+      history.innerHTML =
+        '<li><span>No earning history yet</span><span>🪙 0</span></li>';
+      return;
     }
-  </script>
 
+    historyData.forEach(function(item) {
+      const li = document.createElement("li");
+
+      li.innerHTML =
+        "<span>🎬 " + item.activity + "</span>" +
+        "<span>+🪙 " + item.coins + "</span>";
+
+      history.appendChild(li);
+    });
+  }
+
+  function saveData() {
+    localStorage.setItem("sikho_balance", balance);
+    localStorage.setItem("sikho_todayCoins", todayCoins);
+    localStorage.setItem("sikho_totalEarned", totalEarned);
+    localStorage.setItem("sikho_history", JSON.stringify(historyData));
+  }
+
+  function watchAd() {
+    const button = document.getElementById("watchBtn");
+
+    button.disabled = true;
+    button.textContent = "⏳ Watching Demo Ad...";
+
+    setTimeout(function() {
+      const reward = 10;
+
+      balance += reward;
+      todayCoins += reward;
+      totalEarned += reward;
+
+      historyData.unshift({
+        activity: "Demo Ad Watched",
+        coins: reward
+      });
+
+      saveData();
+      updateDisplay();
+
+      button.disabled = false;
+      button.textContent = "▶ Watch Ad & Earn 10 Coins";
+
+      alert("Congratulations! You earned 10 coins.");
+
+    }, 3000);
+  }
+
+  updateDisplay();
+</script>
 </body>
 </html>
