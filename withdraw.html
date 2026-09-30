@@ -231,9 +231,67 @@
       return;
     }
 
-    alert("Withdrawal request submitted successfully!");
+    const amount = (coins / 100).toFixed(2);
+
+    let withdrawals =
+      JSON.parse(localStorage.getItem("sikho_withdrawals")) || [];
+
+    withdrawals.unshift({
+      amount: amount,
+      status: "Pending"
+    });
+
+    localStorage.setItem(
+      "sikho_withdrawals",
+      JSON.stringify(withdrawals)
+    );
+
+    balance -= coins;
+
+    localStorage.setItem("sikho_balance", balance);
+
+    document.getElementById("coins").textContent = balance;
+    document.getElementById("rupees").textContent =
+      (balance / 100).toFixed(2);
+
+    document.getElementById("withdrawCoins").value = "";
+    document.getElementById("withdrawAmount").textContent = "0.00";
     document.getElementById("upi").value = "";
+
+    displayHistory();
+
+    alert("Withdrawal request submitted successfully!");
   }
+
+  function displayHistory() {
+    const historyBox = document.getElementById("history");
+
+    let withdrawals =
+      JSON.parse(localStorage.getItem("sikho_withdrawals")) || [];
+
+    if (withdrawals.length === 0) {
+      historyBox.innerHTML =
+        '<div class="empty">No withdrawal requests yet.</div>';
+      return;
+    }
+
+    historyBox.innerHTML = "";
+
+    withdrawals.forEach(function(item) {
+      const div = document.createElement("div");
+
+      div.className = "history-item";
+
+      div.innerHTML = `
+        <strong>₹${item.amount}</strong><br>
+        <span>Status: ${item.status}</span>
+      `;
+
+      historyBox.appendChild(div);
+    });
+  }
+
+  displayHistory();
 </script>
 
 </body>
