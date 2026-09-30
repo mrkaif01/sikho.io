@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earn Coins - Sikho.io</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f6f7f9;
+      color: #222;
+    }
+
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .balance {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .coin-icon {
+      font-size: 42px;
+    }
+
+    .balance h2 {
+      font-size: 32px;
+      margin: 8px 0;
+    }
+
+    .balance p {
+      color: #666;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .watch-btn {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 15px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .watch-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat h4 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .stat p {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .withdraw-btn {
+      width: 100%;
+      padding: 13px;
+      margin-top: 15px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      color: #555;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: not-allowed;
+    }
+
+    .history {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .history li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .history li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 600px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>🪙 Earn Coins</h1>
+    <p>Watch rewarded ads and collect coins</p>
+  </div>
+
+  <div class="container">
+
+    <a href="index.html" class="back">← Back to Home</a>
+
+    <div class="balance">
+      <div class="coin-icon">🪙</div>
+      <h2><span id="balance">0</span> Coins</h2>
+      <p>Your current coin balance</p>
+    </div>
+
+    <div class="card">
+      <h3>🎬 Watch Ad & Earn</h3>
+
+      <p>
+        Watch a demo advertisement and receive
+        <strong>10 coins</strong> after completion.
+      </p>
+
+      <button class="watch-btn" id="watchBtn" onclick="watchAd()">
+        ▶ Watch Ad & Earn 10 Coins
+      </button>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <h4 id="todayCoins">0</h4>
+        <p>Today's Coins</p>
+      </div>
+
+      <div class="stat">
+        <h4 id="totalEarned">0</h4>
+        <p>Total Earned</p>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h3>💳 Withdraw</h3>
+
+      <p>
+        Withdrawal functionality will be available after
+        the real reward system is connected.
+      </p>
+
+      <button class="withdraw-btn" disabled>
+        Withdrawal Coming Soon
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>📜 Earning History</h3>
+
+      <ul class="history" id="history">
+        <li>
+          <span>No earning history yet</span>
+          <span>🪙 0</span>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <script>
+    let balance = 0;
+    let todayCoins = 0;
+    let totalEarned = 0;
+
+    function watchAd() {
+
+      const button = document.getElementById("watchBtn");
+
+      button.disabled = true;
+      button.textContent = "⏳ Watching Demo Ad...";
+
+      setTimeout(function() {
+
+        const reward = 10;
+
+        balance += reward;
+        todayCoins += reward;
+        totalEarned += reward;
+
+        document.getElementById("balance").textContent = balance;
+        document.getElementById("todayCoins").textContent = todayCoins;
+        document.getElementById("totalEarned").textContent = totalEarned;
+
+        const history = document.getElementById("history");
+
+        const item = document.createElement("li");
+
+        item.innerHTML =
+          "<span>🎬 Demo Ad Watched</span>" +
+          "<span>+🪙 " + reward + "</span>";
+
+        history.prepend(item);
+
+        button.disabled = false;
+        button.textContent = "▶ Watch Ad & Earn 10 Coins";
+
+        alert("Congratulations! You earned 10 coins.");
+
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
