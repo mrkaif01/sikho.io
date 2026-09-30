@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw - Sikho.io</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fb;
+      color: #222;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #333;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .balance {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      color: #666;
+      font-size: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #888;
+    }
+
+    .withdraw-btn {
+      width: 100%;
+      border: none;
+      border-radius: 9px;
+      padding: 13px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #111827;
+      color: white;
+    }
+
+    .withdraw-btn:hover {
+      opacity: 0.9;
+    }
+
+    .info {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .history-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .empty {
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>💳 Withdraw</h1>
+  </header>
+
+  <div class="container">
+
+    <a href="earn-coins.html" class="back">← Back to Earn Coins</a>
+
+    <div class="card">
+      <h2>Available Balance</h2>
+
+      <div class="balance">
+        🪙 <span id="coins">0</span> Coins
+      </div>
+
+      <div class="value">
+        Available Value: ₹<span id="rupees">0.00</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Request Withdrawal</h2>
+
+      <div class="info">
+        Minimum withdrawal: ₹50<br>
+        Conversion: 100 Coins = ₹1
+      </div>
+
+      <br>
+
+      <label for="upi">UPI ID</label>
+
+      <input
+        type="text"
+        id="upi"
+        placeholder="example@upi"
+      >
+
+      <button class="withdraw-btn" onclick="requestWithdrawal()">
+        💳 Request Withdrawal
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Withdrawal History</h2>
+
+      <div id="history">
+        <div class="empty">No withdrawal requests yet.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let balance = Number(localStorage.getItem("balance")) || 0;
+
+    document.getElementById("coins").textContent = balance;
+    document.getElementById("rupees").textContent =
+      (balance / 100).toFixed(2);
+
+    function requestWithdrawal() {
+      const upi = document.getElementById("upi").value.trim();
+
+      if (!upi) {
+        alert("Please enter your UPI ID.");
+        return;
+      }
+
+      if (balance < 5000) {
+        alert("Minimum withdrawal is ₹50 (5,000 Coins).");
+        return;
+      }
+
+      alert("Withdrawal request submitted successfully!");
+
+      document.getElementById("upi").value = "";
+    }
+  </script>
+
+</body>
+</html>
