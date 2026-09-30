@@ -191,6 +191,13 @@
       <div class="coin-icon">🪙</div>
       <h2><span id="balance">0</span> Coins</h2>
       <p>Your current coin balance</p>
+     <p style="margin-top: 8px;">
+  💰 Approx. Value: ₹<span id="rupeeValue">0.00</span>
+</p>
+
+<p style="margin-top: 5px; font-size: 13px;">
+  🪙 100 Coins = ₹1
+</p>
     </div>
 
     <div class="card">
@@ -260,6 +267,8 @@
 
   function updateDisplay() {
     document.getElementById("balance").textContent = balance;
+   document.getElementById("rupeeValue").textContent =
+  (balance / 100).toFixed(2);
     document.getElementById("todayCoins").textContent = todayCoins;
     document.getElementById("totalEarned").textContent = totalEarned;
 
