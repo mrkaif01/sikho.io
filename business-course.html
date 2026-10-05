@@ -81,19 +81,40 @@ body{
 
 /* Bottom Navigation */
 .bottom{
-    margin-top:20px;
-    padding:18px;
-    display:flex;
-    justify-content:space-around;
-    background:white;
-    border-top:1px solid #e5e5e5;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:white;
+padding:15px;
+display:flex;
+justify-content:space-around;
+box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+z-index:10;
 }
 
 .bottom a{
-    color:#555;
-    text-decoration:none;
-    font-size:14px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+color:#111;
+font-weight:normal;
+font-size:13px;
+gap:4px;
 }
+
+.bottom a span{
+font-size:22px;
+line-height:1;
+}
+
+.bottom a small{
+font-size:13px;
+font-weight:normal;
+}
+
 </style>
 </head>
 
@@ -141,9 +162,25 @@ body{
 </div>
 
 <div class="bottom">
-    <a href="index.html">🏠 Home</a>
-    <a href="courses.html">📚 Courses</a>
-    <a href="profile.html">👤 Profile</a>
+    <a href="index.html">
+        <span>🏠</span>
+        <small>Home</small>
+    </a>
+
+    <a href="courses.html">
+        <span>📚</span>
+        <small>Courses</small>
+    </a>
+
+    <a href="earn-coins.html">
+        <span>🪙</span>
+        <small>Earn Coins</small>
+    </a>
+
+    <a href="profile.html">
+        <span>👤</span>
+        <small>Profile</small>
+    </a>
 </div>
 
 </body>
