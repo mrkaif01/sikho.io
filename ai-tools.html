@@ -115,7 +115,32 @@ font-size:13px;
 font-weight:normal;
 }
 
-</style>
+
+    .close-btn{
+      position:absolute;
+      top:15px;
+      left:15px;
+      width:38px;
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color:#111;
+      background:white;
+      border:1px solid #ddd;
+      border-radius:50%;
+      font-size:26px;
+      line-height:1;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      z-index:5;
+    }
+
+    .close-btn:active{
+      transform:scale(0.95);
+    }
+
+  </style>
 </head>
 
 <body>
@@ -125,7 +150,7 @@ font-weight:normal;
     <p>Learn AI Tools Step by Step</p>
 </div>
 
-<a href="index.html" class="back">❮ Back</a>
+<a href="javascript:history.back()" class="close-btn" aria-label="Go back">×</a>
 
 <div class="container">
 
