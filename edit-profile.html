@@ -7,7 +7,6 @@
 
 <style>
 
-
 body{
 margin:0;
 font-family:Arial,sans-serif;
@@ -74,8 +73,7 @@ margin-bottom:15px;
 }
 
 input[type="file"]{
-width:100%;
-margin-bottom:15px;
+display:none;
 }
 
 .save-btn{
@@ -87,7 +85,13 @@ background:#ff8c42;
 color:white;
 font-size:16px;
 font-weight:bold;
+cursor:pointer;
 }
+
+.save-btn:active{
+transform:scale(0.98);
+}
+
 </style>
 </head>
 
@@ -99,18 +103,25 @@ font-weight:bold;
 
 <h2>Edit Profile</h2>
 
-<img id="preview"
+<img
+id="preview"
 class="preview"
 src="https://via.placeholder.com/120"
+alt="Profile Photo"
 onclick="document.getElementById('photo').click()">
 
-<input type="file" id="photo" accept="image/*" style="display:none;">
+<input
+type="file"
+id="photo"
+accept="image/*">
 
-<input type="text"
+<input
+type="text"
 id="name"
 placeholder="Enter your name">
 
-<button class="save-btn"
+<button
+class="save-btn"
 onclick="saveProfile()">
 Save Changes
 </button>
@@ -123,46 +134,57 @@ let savedName =
 localStorage.getItem("username");
 
 if(savedName){
-document.getElementById("name").value =
-savedName;
+document.getElementById("name").value = savedName;
 }
+
 
 let savedPhoto =
 localStorage.getItem("profilePhoto");
 
 if(savedPhoto){
-document.getElementById("preview").src =
-savedPhoto;
+document.getElementById("preview").src = savedPhoto;
 }
+
 
 document.getElementById("photo").addEventListener("change", function(){
 
 let file = this.files[0];
 
 if(file){
-    document.getElementById("preview").src =
-    URL.createObjectURL(file);
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+document.getElementById("preview").src = e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
 }
 
 });
 
+
 function saveProfile(){
 
 let name =
-document.getElementById("name").value;
+document.getElementById("name").value.trim();
 
 localStorage.setItem(
 "username",
 name
 );
 
+
 let file =
 document.getElementById("photo").files[0];
 
+
 if(file){
 
-let reader =
-new FileReader();
+let reader = new FileReader();
 
 reader.onload = function(e){
 
@@ -178,10 +200,11 @@ window.location.href =
 
 reader.readAsDataURL(file);
 
+
 }else{
 
 window.location.href =
-"profile.html";
+"index.html";
 
 }
 
